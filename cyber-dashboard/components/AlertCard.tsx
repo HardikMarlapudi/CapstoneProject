@@ -1,10 +1,10 @@
-import {securityAlert} from "@/types/alert";
+import { SecurityAlert } from "@/types/alert";
 
 type AlertCardProps = {
-    alert: securityAlert;
+    alert: SecurityAlert;
 };
 
-function getSeverityClass(severity: securityAlert["severity"]) {
+function getSeverityClass(severity: SecurityAlert["severity"]) {
     switch(severity) {
         case "Critical":
             return "border-red-500/30 bg-red-500/10 text-red-400";
@@ -19,11 +19,11 @@ function getSeverityClass(severity: securityAlert["severity"]) {
 
 export default function AlertCard({alert}: AlertCardProps) {
     return (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-lg">
             <div className="flex items-start justify-between gap-4">
                 <div>
-                    <h3 className="text-lg font-bold">{alert.title}</h3>
-                    <h3 className="text-lg font-bold">{alert.description}</h3>
+                    <h3 className="text-lg font-semibold">{alert.title}</h3>
+                    <h3 className="text-lg font-semibold">{alert.description}</h3>
                 </div>
 
                 <span className={`rounded-full border px-3 py-1 text-xs font-medium ${getSeverityClass(alert.severity)}`}>

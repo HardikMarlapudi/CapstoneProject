@@ -7,8 +7,8 @@ export type securityAlert = {
     title: string;
     sourceIp: string;
     target: string;
-    severity: alertSeverity;
     status: alertStatus;
-    timestamp: string;
+    timeStamp: string;
     description: string;
+    severity: alertSeverity;
 };

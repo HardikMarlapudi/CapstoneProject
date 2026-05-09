@@ -1,34 +1,50 @@
+"use client";
+
 import Link from "next/link";
+import {usePathname} from "next/navigation";
 
 type DashboardLayoutProps = {
     children: React.ReactNode;
-};
+}
 
-export default function DashboardLayout({children}: DashboardLayoutProps) {
+export default function DashboardLayout({
+    children,
+}: DashboardLayoutProps) {
+    const pathname = usePathname();
+
+    const navItems = [
+        {
+            name: "Dashboard",
+            href: "/",
+        },
+        {
+            name: "Alerts",
+            href: "/alerts",
+        },
+        {
+            name: "Incidents",
+            href: "/incidents",
+        },
+        {
+            name: "Analytics",
+            href: "/analytics",
+        },
+    ];
+
     return (
-    <div className="flex min-h-screen bg-zinc-800 bg-zinc-900 p-6">
-        <aside className="w-70 border-r border-zinc-700 border-zinc-900 p-6">
-        <h1 className="mb-10 text-4xl font-bold">CyberDash</h1>
-
-        <nav className="space-y-5 text-zinc-300">
-            <Link href="/" className="block hover:text-white">
-                Dashboard
-            </Link>
-
-            <Link href="/" className="block hover:text-white">
-                Alerts
-            </Link>
-
-            <Link href="/" className="block hover:text-white">
-                Incidents
-            </Link>
-
-            <Link href="/" className="block hover:text-white">
-                Analytics
-            </Link>
-        </nav>
-    </aside>
-        <main className="flex-2 p-10">{children}</main>
-    </div>
-);
+        <div className="flex min-h-screen">
+            <nav className="w-64 p-6 flex flex-col gap-4">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.href}
+                        href={item.href}
+                        className={pathname === item.href ? "font-bold" : ""}
+                    >
+                        {item.name}
+                    </Link>
+                ))}
+            </nav>
+            <main className="flex-1 p-6">{children}</main>
+        </div>
+    );
 }
