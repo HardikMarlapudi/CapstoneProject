@@ -1,4 +1,4 @@
-export type ReportStatus = "Draft" | "Published" | "Archived";
+export type ReportStatus = "Draft" | "Submitted" | "Archived";
 
 export type CyberReport = {
     id: number;

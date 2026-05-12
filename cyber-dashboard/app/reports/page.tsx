@@ -26,7 +26,7 @@ function getStatusClass(status: ReportStatus) {
   switch (status) {
     case "Draft":
       return "border-yellow-500/30 bg-yellow-500/10 text-yellow-400";
-    case "Published":
+    case "Submitted":
       return "border-blue-500/30 bg-blue-500/10 text-blue-400";
     case "Archived":
       return "border-green-500/30 bg-green-500/10 text-green-400";
