@@ -29,6 +29,10 @@ export default function DashboardLayout({
             name: "Analytics",
             href: "/analytics",
         },
+        {
+            name: "Reports",
+            href: "/reports",
+        },
     ];
 
     return (
