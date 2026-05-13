@@ -1,35 +1,66 @@
 import {NextResponse} from "next/server";
-import {deleteReport, updateReport} from "@/lib/reportStore";
+
+import {
+    deleteReport,
+    updateReport,
+} from "@/lib/reportStore";
+
 import {CyberReport} from "@/types/report";
 
 type RouteParams = {
-    params: Promise<{id: string}>;
+    params: Promise<{
+        id: string;
+    }>;
 };
 
-export async function PUT(request: Request, {params}: RouteParams) {
+export async function PUT(
+    request: Request,
+    {params}: RouteParams
+) {
     const {id} = await params;
-    // Implementation for fetching a specific report by ID
-    const reportID = Number(id);
     const body = (await request.json()) as Partial<CyberReport>;
+    const reportId = Number(id);
 
-    const updatedReport = updateReport(reportID, body);
+    const updatedReport = updateReport(
+        reportId,
+        body
+    );
 
     if (!updatedReport) {
-        return NextResponse.json({message: "Report not found"}, {status: 404});
+        return NextResponse.json(
+            {
+                message: "Report not found.",
+            },
+            {
+                status: 404,
+            }
+        );
     }
 
     return NextResponse.json(updatedReport);
 }
 
-export async function DELETE(_request: Request, {params}: RouteParams) {
+export async function DELETE(
+    _request: Request,
+    {params}: RouteParams
+) {
     const {id} = await params;
-    const reportID = Number(id);
+    const reportId = Number(id);
 
-    const deletedReport = deleteReport(reportID);
+    const deletedReport = deleteReport(reportId);
 
     if (!deletedReport) {
-        return NextResponse.json({message: "Report not found."}, {status: 404});
+        return NextResponse.json(
+            {
+                message: "Report not found.",
+            },
+            {
+                status: 404,
+            }
+        );
     }
 
-    return NextResponse.json({message: "Report deleted successfully."});
+    return NextResponse.json({
+        message: "Report deleted Successfully.",
+    });
 }
